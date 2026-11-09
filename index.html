@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日大赛推特 - 赛事动态聚合</title>
+  <meta name="description" content="每日大赛推特页面汇聚推特平台每日大赛的赛事动态、精选作品、赛程更新与社区讨论，适合关注创意挑战与线上竞赛的用户浏览。">
+  <meta name="keywords" content="推特赛事,创意挑战,线上竞赛,作品精选,赛程更新,社区讨论">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+      --ink: #1a1e24;
+      --muted: #5b6777;
+      --line: #e2e6ec;
+      --brand: #1d4ed8;
+      --brand-soft: #e8eefe;
+      --accent: #d97706;
+      --accent-soft: #fef3c7;
+      --radius: 12px;
+      --shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      --header-h: 64px;
+      --notice-h: 40px;
+      --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    html {
+      scroll-padding-top: calc(var(--header-h) + var(--notice-h) + 12px);
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      padding-top: calc(var(--header-h) + var(--notice-h));
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .wrap {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 吸顶公告条 */
+    .notice-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--notice-h);
+      background: var(--accent-soft);
+      border-bottom: 1px solid #f5d78c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #7a4b00;
+      z-index: 100;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .notice-bar strong {
+      margin-right: 6px;
+    }
+
+    /* 吸顶页头 */
+    .site-header {
+      position: fixed;
+      top: var(--notice-h);
+      left: 0;
+      right: 0;
+      height: var(--header-h);
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand svg {
+      width: 34px;
+      height: 34px;
+    }
+
+    .brand-text {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .header-nav a {
+      font-size: 14px;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .header-nav a:hover {
+      background: var(--brand-soft);
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .header-quick {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .header-quick a {
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .header-quick a:hover {
+      background: #1e40af;
+      text-decoration: none;
+    }
+
+    /* 主布局：双栏标准 */
+    .main-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 32px;
+      padding: 32px 0;
+      align-items: start;
+    }
+
+    /* 首屏 */
+    .hero {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #2563eb 100%);
+      border-radius: 20px;
+      padding: 44px 48px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions a {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 24px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .hero-actions .primary {
+      background: #fff;
+      color: #1d4ed8;
+    }
+
+    .hero-actions .primary:hover {
+      background: #e8eefe;
+      text-decoration: none;
+    }
+
+    .hero-actions .secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-actions .secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      text-decoration: none;
+    }
+
+    .hero-visual {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-visual svg {
+      width: 160px;
+      height: 160px;
+      opacity: 0.95;
+    }
+
+    /* 主内容区 */
+    .main-content {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .aside {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* 板块通用 */
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 22px;
+      background: var(--brand);
+      border-radius: 2px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .section h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 22px 0 8px;
+      color: var(--ink);
+    }
+
+    .section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .section p {
+      font-size: 15px;
+      color: #374151;
+      margin-bottom: 12px;
+      line-height: 1.75;
+    }
+
+    .section ul {
+      padding-left: 22px;
+      margin-bottom: 14px;
+    }
+
+    .section li {
+      font-size: 15px;
+      color: #374151;
+      margin-bottom: 6px;
+      line-height: 1.65;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fafbfc;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+
+    .card-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .tag.accent {
+      background: var(--accent-soft);
+      color: #92400e;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    /* 紧凑列表 */
+    .compact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .compact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .compact-item:last-child {
+      border-bottom: none;
+    }
+
+    .compact-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+      background: var(--brand-soft);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .compact-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .compact-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .compact-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .compact-date {
+      font-size: 12px;
+      color: #9ca3af;
+      white-space: nowrap;
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+
+    /* 分类入口 */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .cat-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 8px;
+      background: #f3f6fc;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .cat-link:hover {
+      background: var(--brand-soft);
+      color: var(--brand);
+      border-color: #c7d2fe;
+      text-decoration: none;
+    }
+
+    /* FAQ */
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 4px 0;
+    }
+
+    details:last-child {
+      border-bottom: none;
+    }
+
+    summary {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      padding: 12px 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::before {
+      content: '▸';
+      color: var(--brand);
+      font-size: 14px;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    details p {
+      padding: 0 0 14px 22px;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* 评论 */
+    .comment-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .comment-item {
+      background: #fafbfc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .comment-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .comment-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .comment-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .comment-text {
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    .comment-date {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    /* 推荐标签 */
+    .tag-index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag-index a {
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: #f3f6fc;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tag-index a:hover {
+      background: var(--brand-soft);
+      border-color: #c7d2fe;
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    /* 侧栏 */
+    .aside .section {
+      padding: 22px 22px;
+    }
+
+    .aside .section h2 {
+      font-size: 17px;
+    }
+
+    .aside .section h2::before {
+      height: 18px;
+      width: 3px;
+    }
+
+    .aside .compact-title {
+      font-size: 14px;
+    }
+
+    .aside .compact-desc {
+      font-size: 12px;
+    }
+
+    /* 时间线 */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid var(--line);
+      margin-top: 8px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 18px 16px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -25px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brand);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--brand-soft);
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand);
+      margin-bottom: 2px;
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* 页脚 */
+    .site-footer {
+      background: #1e293b;
+      color: #cbd5e1;
+      padding: 40px 0 28px;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .footer-brand {
+      max-width: 320px;
+    }
+
+    .footer-brand .brand-text {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      color: #e2e8f0;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #334155;
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    /* 响应式 */
+    @media (max-width: 1024px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .aside {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+      }
+
+      .hero {
+        padding: 32px 28px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero-visual svg {
+        width: 120px;
+        height: 120px;
+      }
+
+      .header-nav {
+        display: none;
+      }
+
+      .cat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 740px) {
+      .wrap {
+        padding: 0 16px;
+      }
+
+      .header-inner {
+        padding: 0 16px;
+        gap: 12px;
+      }
+
+      .brand-text {
+        font-size: 17px;
+      }
+
+      .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 20px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .hero-desc {
+        font-size: 14px;
+      }
+
+      .hero-visual {
+        align-self: flex-end;
+      }
+
+      .hero-visual svg {
+        width: 90px;
+        height: 90px;
+      }
+
+      .section {
+        padding: 20px 18px;
+      }
+
+      .section h2 {
+        font-size: 18px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .comment-list {
+        grid-template-columns: 1fr;
+      }
+
+      .aside {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        gap: 32px;
+      }
+
+      .compact-item {
+        flex-wrap: wrap;
+      }
+
+      .compact-date {
+        margin-left: 40px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-quick a {
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+    }
+
+    /* 焦点样式 */
+    a:focus-visible,
+    summary:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--brand);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="notice-bar">
+    <strong>本周新增 14 条赛事记录</strong> 创意挑战赛第 8 期已开启，作品提交截止 11 月 12 日
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="#1d4ed8"/>
+          <path d="M12 28L20 10L28 28H23L20 20L17 28H12Z" fill="#fff"/>
+          <circle cx="20" cy="30" r="2.5" fill="#fbbf24"/>
+        </svg>
+        <span class="brand-text">每日大赛推特</span>
+      </div>
+      <nav class="header-nav" aria-label="主题导航">
+        <a href="/#overview">赛事概览</a>
+        <a href="/#featured">精选作品</a>
+        <a href="/#updates">最新动态</a>
+        <a href="/#categories">分类入口</a>
+        <a href="/#deepdive">深度解析</a>
+        <a href="/#faq">常见问答</a>
+      </nav>
+      <div class="header-quick">
+        <a href="/#updates">赛程日历</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="main-layout">
+
+      <!-- 首屏 -->
+      <section class="hero" aria-label="主题首屏">
+        <div class="hero-content">
+          <h1>每日大赛推特</h1>
+          <p class="hero-desc">汇聚推特平台每日创意挑战赛的实时赛况、精选参赛作品与社区讨论，追踪摄影、绘画、文案、短视频等多元赛事方向。</p>
+          <div class="hero-actions">
+            <a href="/#featured" class="primary">浏览精选作品</a>
+            <a href="/#updates" class="secondary">查看今日赛程</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="80" cy="80" r="72" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+            <circle cx="80" cy="80" r="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+            <path d="M56 80L72 96L104 64" stroke="#fbbf24" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="80" cy="80" r="20" fill="rgba(255,255,255,0.08)"/>
+            <rect x="68" y="34" width="24" height="6" rx="3" fill="rgba(255,255,255,0.3)"/>
+            <rect x="68" y="120" width="24" height="6" rx="3" fill="rgba(255,255,255,0.3)"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 主内容区 -->
+      <main class="main-content">
+
+        <!-- 1. 主题领域概览 -->
+        <section class="section" id="overview">
+          <h2>推特每日大赛赛事概览</h2>
+          <p class="section-sub">了解当前推特平台上最活跃的赛事类型与参与方向</p>
+          <p>推特每日大赛推特所指向的领域，是以推特为主要发布与评选平台的创意挑战赛事集合。这类赛事通常由个人博主、创意社群或品牌方发起，每天或每周设定一个主题，参与者按主题创作并带指定标签发布作品，以点赞、转发、评委打分等方式决出优胜。当前活跃的赛事方向包括：<strong>摄影挑战</strong>（如“城市光影·48小时”）、<strong>插画速写</strong>（如“每日一兽·奇幻生物”）、<strong>短文案比拼</strong>（如“六词故事大赛”）、<strong>短视频创意</strong>（如“15秒反转剧场”），以及跨媒介的<strong>综合创作赛</strong>（如“用一张图讲完一个悬疑故事”）。</p>
+          <p>每个赛事通常包含明确的主题说明、提交截止时间、评选标准和奖励设置。参赛者需要在推特上发布作品并携带赛事专属标签，部分赛事还要求填写报名表单。围观者可以通过标签聚合页浏览全部参赛作品，并参与社区投票。近期值得关注的包括“十一月城市摄影周”、“奇幻生物速写第 12 轮”和“六词恐怖故事挑战”，这些赛事在推特上形成了稳定的创作者社群与讨论热度。</p>
+        </section>
+
+        <!-- 2. 精选内容推荐 -->
+        <section class="section" id="featured">
+          <h2>精选参赛作品推荐</h2>
+          <p class="section-sub">近期推特大赛中讨论度较高的具体作品与创作者</p>
+          <div class="card-grid">
+            <article class="card">
+              <img src="https://picsum.photos/seed/tw-daily-photo01/400/300" alt="城市光影摄影挑战作品《雨夜霓虹》" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <div class="card-title">《雨夜霓虹》——城市光影·48小时</div>
+                <div class="card-tags">
+                  <span class="tag">摄影挑战</span>
+                  <span class="tag accent">夜景</span>
+                  <span class="tag">街头</span>
+                </div>
+                <p class="card-desc">创作者@lumix_chen 在雨夜拍摄的涩谷街头，利用积水倒影与霓虹灯牌构建对称构图，获本轮评委推荐。</p>
+                <div class="card-meta"><span>热度 9.2k</span><span>11-07</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/tw-daily-illus02/400/300" alt="奇幻生物速写作品《雾角鹿》" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <div class="card-title">《雾角鹿》——每日一兽·奇幻生物</div>
+                <div class="card-tags">
+                  <span class="tag">插画速写</span>
+                  <span class="tag accent">奇幻</span>
+                  <span class="tag">生物设计</span>
+                </div>
+                <p class="card-desc">以苏格兰高地传说为灵感设计的鹿形生物，鹿角末端能喷出浓雾。线稿与色稿对比图一同发布，获 2.3k 转发。</p>
+                <div class="card-meta"><span>热度 8.7k</span><span>11-06</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/tw-daily-story03/400/300" alt="六词故事大赛作品展示" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <div class="card-title">六词恐怖故事《婴儿监控器》——六词挑战</div>
+                <div class="card-tags">
+                  <span class="tag">短文案</span>
+                  <span class="tag accent">恐怖</span>
+                  <span class="tag">微小说</span>
+                </div>
+                <p class="card-desc">全文仅六个英文单词：“Baby monitor picks up second voice.” 评论区展开大量续写，成为本轮传播最广的条目。</p>
+                <div class="card-meta"><span>热度 12.4k</span><span>11-05</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/tw-daily-video04/400/300" alt="15秒反转剧场短视频作品截图" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <div class="card-title">《最后一班地铁》——15秒反转剧场</div>
+                <div class="card-tags">
+                  <span class="tag">短视频</span>
+                  <span class="tag accent">反转</span>
+                  <span class="tag">都市</span>
+                </div>
+                <p class="card-desc">15秒内完成从日常通勤到超现实转折的叙事，利用车厢灯光闪烁实现场景切换，单条播放量破 80 万。</p>
+                <div class="card-meta"><span>热度 15.1k</span><span>11-04</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/tw-daily-arch05/400/300" alt="建筑几何摄影挑战作品" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <div class="card-title">《螺旋》——建筑几何摄影赛</div>
+                <div class="card-tags">
+                  <span class="tag">摄影挑战</span>
+                  <span class="tag accent">建筑</span>
+                  <span class="tag">极简</span>
+                </div>
+                <p class="card-desc">拍摄于柏林某停车楼旋转坡道，利用广角与长曝光呈现螺旋线条。构图简洁，色彩克制，获专业组周冠军。</p>
+                <div class="card-meta"><span>热度 6.8k</span><span>11-03</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/tw-daily-ink06/400/300" alt="水墨风插画速写作品" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <div class="card-title">《山鬼》——东方奇幻速写赛</div>
+                <div class="card-tags">
+                  <span class="tag">插画速写</span>
+                  <span class="tag accent">国风</span>
+                  <span class="tag">水墨</span>
+                </div>
+                <p class="card-desc">以《九歌·山鬼》为文本依据，结合水墨笔触与数字上色，塑造了乘赤豹的巫山神女形象。作者附上了创作思路长文。</p>
+                <div class="card-meta"><span>热度 7.5k</span><span>11-02</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 3. 最新更新 / 动态 -->
+        <section class="section" id="updates">
+          <h2>赛程动态与最新更新</h2>
+          <p class="section-sub">2026 年 11 月 8 日前后的赛事进展与提交提醒</p>
+          <div class="compact-list">
+            <div class="compact-item">
+              <span class="compact-num">1</span>
+              <div class="compact-body">
+                <div class="compact-title">城市光影·48小时 第 9 轮主题公布</div>
+                <div class="compact-desc">本轮主题为“雨与玻璃”，提交窗口 11 月 8 日 18:00 至 11 月 10 日 18:00，限定 2 张作品。</div>
+              </div>
+              <span class="compact-date">今天 09:30</span>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">2</span>
+              <div class="compact-body">
+                <div class="compact-title">每日一兽·奇幻生物 第 12 轮投票开启</div>
+                <div class="compact-desc">本轮共收到 86 份作品，社区投票通道已打开，截止 11 月 9 日 23:59，票数前三名进入终审。</div>
+              </div>
+              <span class="compact-date">今天 08:15</span>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">3</span>
+              <div class="compact-body">
+                <div class="compact-title">六词恐怖故事挑战 新增“最佳续写”奖项</div>
+                <div class="compact-desc">主办方宣布从第 8 期起增设读者续写奖，奖励在评论区发布高质量延伸故事的参与者。</div>
+              </div>
+              <span class="compact-date">昨天 21:10</span>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">4</span>
+              <div class="compact-body">
+                <div class="compact-title">15秒反转剧场 第 5 期获奖名单公布</div>
+                <div class="compact-desc">《最后一班地铁》《电梯里的第二个人》《门缝》分获前三名，完整点评视频已在推特发布。</div>
+              </div>
+              <span class="compact-date">昨天 16:40</span>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">5</span>
+              <div class="compact-body">
+                <div class="compact-title">建筑几何摄影赛 冬季赛开始报名</div>
+                <div class="compact-desc">主题为“结构与光”，报名截止 11 月 15 日，参赛者需提交 3 至 5 张同一建筑系列作品。</div>
+              </div>
+              <span class="compact-date">11 月 6 日</span>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">6</span>
+              <div class="compact-body">
+                <div class="compact-title">东方奇幻速写赛 规则调整说明</div>
+                <div class="compact-desc">自本轮起允许使用 AI 辅助生成底稿，但须在推文中明确标注使用范围与比例。</div>
+              </div>
+              <span class="compact-date">11 月 5 日</span>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">7</span>
+              <div class="compact-body">
+                <div class="compact-title">短文案大赛 十一月命题发布</div>
+                <div class="compact-desc">本月命题为“一句话证明你来自未来”，字数限制 50 字以内，截止 11 月 20 日。</div>
+              </div>
+              <span class="compact-date">11 月 4 日</span>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">8</span>
+              <div class="compact-body">
+                <div class="compact-title">综合创作赛“一张图悬疑”征集启动</div>
+                <div class="compact-desc">要求用单张图像传达完整悬疑叙事，可配不超过 20 字说明，评选侧重信息密度与反转设计。</div>
+              </div>
+              <span class="compact-date">11 月 3 日</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. 分类入口 -->
+        <section class="section" id="categories">
+          <h2>赛事分类入口</h2>
+          <p class="section-sub">按具体创作类型浏览对应的推特赛事与作品聚合</p>
+          <div class="cat-grid">
+            <a href="/#featured" class="cat-link">摄影挑战</a>
+            <a href="/#featured" class="cat-link">插画速写</a>
+            <a href="/#featured" class="cat-link">短文案比拼</a>
+            <a href="/#featured" class="cat-link">短视频创意</a>
+            <a href="/#featured" class="cat-link">综合创作赛</a>
+            <a href="/#featured" class="cat-link">建筑几何</a>
+            <a href="/#featured" class="cat-link">东方奇幻</a>
+            <a href="/#featured" class="cat-link">微小说挑战</a>
+          </div>
+        </section>
+
+        <!-- 5. 深度解析正文 -->
+        <section class="section" id="deepdive">
+          <h2>深度解析：推特大赛的类型差异与参与策略</h2>
+          <p class="section-sub">从赛事机制到作品评判，拆解不同方向赛事的关键区别</p>
+
+          <h3>摄影挑战类：窗口期与主题限定是核心</h3>
+          <p>以“城市光影·48小时”为代表的摄影挑战赛，通常设定 24 至 72 小时的紧凑提交窗口，并限定拍摄主题与器材使用范围。这类赛事的评判重点往往不在后期技术，而在于<strong>在限定条件下完成叙事的能力</strong>。例如“雨与玻璃”这一主题，既考验对天气与材质的观察，也考验在短时间内找到独特视角的执行力。参赛者需要仔细阅读规则中关于拍摄时间、地点和后期处理的限制，避免因技术性违规被取消资格。</p>
+          <p>与长期征集类摄影赛不同，每日大赛推特上的摄影挑战更强调即时性和社区互动。作品发布后，转发与评论量会在评选权重中占据一定比例，因此发布时机和标签使用同样影响最终成绩。</p>
+
+          <h3>插画速写类：角色设计与世界观构建并重</h3>
+          <p>“每日一兽·奇幻生物”和“东方奇幻速写赛”代表了插画速写类赛事的两条路径。前者要求创作者在有限时间内完成一个原创生物的设计，强调形态合理性与视觉辨识度；后者则更看重文本依据与文化元素的转化，例如从《山海经》或《九歌》中提取意象并进行当代表达。评判标准通常包含：<strong>概念原创性</strong>、<strong>完成度</strong>、<strong>与主题的契合度</strong>，以及<strong>作品说明的清晰度</strong>。</p>
+          <p>值得注意的是，近期部分赛事对 AI 辅助工具的使用做出了明确规定。有的完全禁止，有的允许但要求标注。参赛前务必确认规则中的相关条款，避免争议。</p>
+
+          <h3>短文案与短视频：信息密度决定成败</h3>
+          <p>六词故事、50 字微小说、15 秒反转剧场，这些赛事的共同特点是对<strong>信息密度</strong>的极致要求。六词故事需要在六个单词内完成铺垫与反转，15 秒视频则要在极短时间内建立情境并给出意外结局。这类赛事的评判往往更主观，社区投票和评委趣味的影响更大。</p>
+          <p>参与短文案类赛事的策略是：先确定反转或情绪落点，再倒推需要的场景与细节，删掉一切可删的词。短视频类则需要提前设计分镜，确保在 15 秒内完成至少一次有效转折。由于作品体量小、发布门槛低，这类赛事的提交量通常远高于摄影和插画类，竞争也更激烈。</p>
+
+          <h3>赛程节奏与作品发布的最佳实践</h3>
+          <ul>
+            <li><strong>提前 1 天确认规则</strong>：重点看截止时间、提交数量限制、标签格式和版权条款。</li>
+            <li><strong>在窗口期前 1/3 时间内发布</strong>：既保证作品质量，又获得更长的社区曝光与互动时间。</li>
+            <li><strong>配文说明创作思路</strong>：多数评委和社区用户会阅读作品说明，清晰的思路阐述能提升作品被推荐的概率。</li>
+            <li><strong>关注赛事标签的实时动态</strong>：通过标签聚合页观察其他参赛作品的方向，避免与热门作品过度同质化。</li>
+          </ul>
+        </section>
+
+        <!-- 6. 体验指南 / 消费路径 -->
+        <section class="section" id="guide">
+          <h2>浏览与参与指南</h2>
+          <p class="section-sub">从围观到参赛的推荐路径与判断依据</p>
+          <p>如果你是第一次接触推特上的每日大赛，建议先从<strong>高互动量的赛事标签</strong>入手，观察 2 至 3 轮完整的赛事周期，了解提交节奏和评选流程。围观阶段可以重点关注赛事置顶推文中的规则说明、获奖作品点评以及社区中的争议讨论，这些信息能帮助你快速建立对赛事风格的判断。</p>
+          <p>决定参与后，建议从<strong>短文案或六词故事</strong>这类低门槛赛事开始，熟悉发布流程和标签使用。积累一定经验后，再挑战摄影或插画类需要更多准备时间的赛事。判断一个赛事是否值得投入时间，可以看三个指标：主办方是否持续运营超过 5 轮、往期获奖作品的质量是否稳定、以及社区讨论是否围绕作品本身而非刷量行为。</p>
+          <p>比较同类赛事时，重点看<strong>评选机制</strong>（纯社区投票还是评委制）、<strong>奖励设置</strong>（曝光资源还是实物奖励）以及<strong>作品版权归属</strong>。这些因素直接影响参赛的实际收益。</p>
+        </section>
+
+        <!-- 7. FAQ -->
+        <section class="section" id="faq">
+          <h2>常见问题</h2>
+          <p class="section-sub">关于推特每日大赛的具体疑问与解答</p>
+
+          <details>
+            <summary>推特上的每日大赛一般多久更新一轮？</summary>
+            <p>不同赛事节奏差异很大。摄影挑战类通常以 48 小时至 1 周为一轮，插画速写类多为每日或每周更新，短文案类有的每日命题、有的按月征集。建议关注赛事主办方的置顶推文或主页公告，那里会写明固定的更新周期。</p>
+          </details>
+
+          <details>
+            <summary>六词故事大赛和 50 字微小说的区别是什么？</summary>
+            <p>六词故事严格限定为六个英文单词（或对应数量的中文词），极度压缩，反转和留白是核心；50 字微小说则有更大的叙事空间，通常要求包含完整的情节起落。两者对信息密度的要求都很高，但六词故事更偏语言游戏，50 字微小说更接近传统微小说。</p>
+          </details>
+
+          <details>
+            <summary>第一次参加摄影挑战赛，从哪个赛事开始比较好？</summary>
+            <p>建议选择同时长窗口（48 小时以上）、允许手机拍摄、且往期获奖作品风格多元的赛事。例如“城市光影·48小时”对器材没有硬性限制，主题也较宽泛，适合作为首次参赛的选择。参赛前务必阅读规则中关于后期处理的规定。</p>
+          </details>
+
+          <details>
+            <summary>推特大赛的评判标准通常包含哪些维度？</summary>
+            <p>多数赛事会从原创性、完成度、主题契合度、技术执行和社区互动五个维度综合评判。摄影类更看重构图与叙事，插画类更看重概念与造型，文案类则更看重反转设计与语言效率。部分赛事会公布评分表，可提前查阅。</p>
+          </details>
+
+          <details>
+            <summary>使用 AI 辅助创作会被取消参赛资格吗？</summary>
+            <p>取决于具体赛事规则。目前推特上的创作类赛事对此态度不一：有的完全禁止，有的允许但要求标注使用范围，也有赛事专门限制 AI 生成内容的比例。参赛前必须仔细阅读规则中的相关条款，并在作品中如实说明。</p>
+          </details>
+
+          <details>
+            <summary>在哪里可以看到往期获奖作品合集？</summary>
+            <p>多数赛事主办方会在每轮结束后发布获奖作品汇总推文，并固定在主页置顶。也可以在推特搜索赛事专属标签，按“热门”排序浏览历史作品。部分赛事还建有独立的话题页或作品档案链接。</p>
+          </details>
+        </section>
+
+        <!-- 8. 用户评论 -->
+        <section class="section" id="comments">
+          <h2>社区讨论</h2>
+          <p class="section-sub">来自推特大赛参与者与围观者的真实感评论</p>
+          <div class="comment-list">
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">林</span><span class="comment-name">林间摄影</span></div>
+              <p class="comment-text">“雨与玻璃”这个主题很妙，但时间只有 48 小时，对上班族不太友好。希望主办方考虑延长到 72 小时。</p>
+              <div class="comment-date">今天 10:12</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">M</span><span class="comment-name">Mori_art</span></div>
+              <p class="comment-text">雾角鹿那张设计真的很完整，鹿角喷雾的设定既有视觉记忆点又符合生物逻辑，实至名归。</p>
+              <div class="comment-date">今天 09:48</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">六</span><span class="comment-name">六词爱好者</span></div>
+              <p class="comment-text">六词故事新增续写奖是个好主意，很多评论区的内容比正文还精彩，早该被看见了。</p>
+              <div class="comment-date">昨天 22:15</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">V</span><span class="comment-name">Video_Leo</span></div>
+              <p class="comment-text">《最后一班地铁》的反转其实不算新，但 15 秒内完成灯光切换的执行力确实强，获奖合理。</p>
+              <div class="comment-date">昨天 19:30</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">建</span><span class="comment-name">建筑眼</span></div>
+              <p class="comment-text">建筑几何赛允许后期校正透视吗？规则里写得比较模糊，建议主办方明确一下。</p>
+              <div class="comment-date">昨天 17:05</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">A</span><span class="comment-name">AI_观察员</span></div>
+              <p class="comment-text">东方奇幻赛允许 AI 辅助但要标注，这个尺度比较务实。完全禁止不现实，完全放开对纯手绘作者不公平。</p>
+              <div class="comment-date">昨天 14:22</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">山</span><span class="comment-name">山鬼读者</span></div>
+              <p class="comment-text">《山鬼》那张的创作长文值得一读，把文本依据和视觉转化讲得很清楚，比单纯晒图有诚意。</p>
+              <div class="comment-date">11 月 7 日</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">短</span><span class="comment-name">短故事铺</span></div>
+              <p class="comment-text">短文案大赛这个月命题“一句话证明你来自未来”挺好发挥的，已经看到好几个有意思的投稿了。</p>
+              <div class="comment-date">11 月 7 日</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">K</span><span class="comment-name">Kira速写</span></div>
+              <p class="comment-text">每日一兽的提交量越来越大，86 份作品看都看不过来，建议主办方加个初审机制。</p>
+              <div class="comment-date">11 月 6 日</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">光</span><span class="comment-name">光影练习生</span></div>
+              <p class="comment-text">摄影挑战的社区投票权重有点高，有些作品明显靠拉票上来的，希望增加专业评委的比例。</p>
+              <div class="comment-date">11 月 6 日</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">反</span><span class="comment-name">反转爱好者</span></div>
+              <p class="comment-text">15 秒剧场里《电梯里的第二个人》其实比冠军更有余味，可惜传播量不够。</p>
+              <div class="comment-date">11 月 5 日</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">几</span><span class="comment-name">几何控</span></div>
+              <p class="comment-text">《螺旋》那张在停车楼拍的？我路过好几次都没发现这个角度，视角确实重要。</p>
+              <div class="comment-date">11 月 5 日</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">新</span><span class="comment-name">新人小周</span></div>
+              <p class="comment-text">第一次参加摄影挑战，请问手机拍摄可以吗？规则里好像没写器材限制。</p>
+              <div class="comment-date">11 月 4 日</div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head"><span class="comment-avatar">故</span><span class="comment-name">故事收集者</span></div>
+              <p class="comment-text">综合创作赛“一张图悬疑”的评选标准说侧重信息密度，这个说法有点抽象，希望看到具体案例。</p>
+              <div class="comment-date">11 月 4 日</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. 相关资讯 -->
+        <section class="section" id="news">
+          <h2>相关资讯</h2>
+          <p class="section-sub">推特大赛领域近期动态与规则变化</p>
+          <div class="compact-list">
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">推特创意挑战赛联盟公布 11 月赛事日历</div>
+                <div class="compact-desc">涵盖摄影、插画、文案三大类共 9 个赛事，其中 3 个为首次上线的新赛事。</div>
+              </div>
+              <span class="compact-date">11 月 7 日</span>
+            </div>
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">六词故事挑战赛总参与量突破 5 万条</div>
+                <div class="compact-desc">主办方宣布将增设年度精选集，从过往 12 期作品中选出 100 条收录。</div>
+              </div>
+              <span class="compact-date">11 月 6 日</span>
+            </div>
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">插画赛事 AI 辅助规则形成行业参考框架</div>
+                <div class="compact-desc">多个赛事主办方联合发布标注规范草案，要求注明 AI 生成比例与具体环节。</div>
+              </div>
+              <span class="compact-date">11 月 5 日</span>
+            </div>
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">“雨与玻璃”主题摄影赛报名人数创单轮新高</div>
+                <div class="compact-desc">截至 11 月 6 日，已有超过 1200 人提交作品，主办方延长了评审时间。</div>
+              </div>
+              <span class="compact-date">11 月 5 日</span>
+            </div>
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">15 秒反转剧场与短视频平台达成联合推广</div>
+                <div class="compact-desc">获奖作品将获得跨平台推荐位，推特与短视频端同步展映。</div>
+              </div>
+              <span class="compact-date">11 月 3 日</span>
+            </div>
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">建筑几何摄影赛宣布冬季赛评委阵容</div>
+                <div class="compact-desc">三位建筑摄影师与两位策展人组成评审团，强调结构与光的主题契合度。</div>
+              </div>
+              <span class="compact-date">11 月 2 日</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. 相关推荐 -->
+        <section class="section" id="related">
+          <h2>延伸方向推荐</h2>
+          <p class="section-sub">与推特大赛相关的具体创作方向与赛事类型索引</p>
+          <div class="tag-index">
+            <a href="/#featured">城市夜景摄影</a>
+            <a href="/#featured">奇幻生物设计</a>
+            <a href="/#featured">六词恐怖故事</a>
+            <a href="/#featured">15秒叙事短视频</a>
+            <a href="/#featured">建筑极简构图</a>
+            <a href="/#featured">国风水墨插画</a>
+            <a href="/#featured">50字微小说</a>
+            <a href="/#featured">一张图悬疑创作</a>
+          </div>
+        </section>
+
+        <!-- 11. 补充板块：热门榜单 -->
+        <section class="section" id="ranking">
+          <h2>本周热度榜单</h2>
+          <p class="section-sub">2026 年 11 月 2 日至 11 月 8 日推特大赛作品互动排行</p>
+          <div class="compact-list">
+            <div class="compact-item">
+              <span class="compact-num">1</span>
+              <div class="compact-body">
+                <div class="compact-title">《最后一班地铁》——15秒反转剧场</div>
+                <div class="compact-desc">播放量 80.2 万 · 转发 1.2 万 · 评论 3.4 千</div>
+              </div>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">2</span>
+              <div class="compact-body">
+                <div class="compact-title">六词恐怖故事《婴儿监控器》——六词挑战</div>
+                <div class="compact-desc">点赞 4.8 万 · 转发 2.3 万 · 评论 5.1 千</div>
+              </div>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">3</span>
+              <div class="compact-body">
+                <div class="compact-title">《雨夜霓虹》——城市光影·48小时</div>
+                <div class="compact-desc">点赞 9.2 千 · 转发 4.1 千 · 评委推荐 3 次</div>
+              </div>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">4</span>
+              <div class="compact-body">
+                <div class="compact-title">《雾角鹿》——每日一兽·奇幻生物</div>
+                <div class="compact-desc">点赞 8.7 千 · 转发 2.3 千 · 社区投票第 1 名</div>
+              </div>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">5</span>
+              <div class="compact-body">
+                <div class="compact-title">《山鬼》——东方奇幻速写赛</div>
+                <div class="compact-desc">点赞 7.5 千 · 转发 1.8 千 · 长文创作解析获 600 收藏</div>
+              </div>
+            </div>
+            <div class="compact-item">
+              <span class="compact-num">6</span>
+              <div class="compact-body">
+                <div class="compact-title">《螺旋》——建筑几何摄影赛</div>
+                <div class="compact-desc">点赞 6.8 千 · 转发 1.5 千 · 专业组周冠军</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- 侧栏 -->
+      <aside class="aside">
+        <section class="section">
+          <h2>赛事时间线</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">11 月 8 日</div>
+              <div class="timeline-title">城市光影第 9 轮开启</div>
+              <div class="timeline-desc">主题“雨与玻璃”，提交窗口 48 小时。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">11 月 9 日</div>
+              <div class="timeline-title">每日一兽投票截止</div>
+              <div class="timeline-desc">86 份作品社区投票，23:59 关闭。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">11 月 12 日</div>
+              <div class="timeline-title">创意挑战赛第 8 期截止</div>
+              <div class="timeline-desc">作品提交最终截止日，逾期不候。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">11 月 15 日</div>
+              <div class="timeline-title">建筑几何冬季赛报名截止</div>
+              <div class="timeline-desc">需提交 3 至 5 张同一建筑系列。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">11 月 20 日</div>
+              <div class="timeline-title">短文案大赛截止</div>
+              <div class="timeline-desc">命题“一句话证明你来自未来”。</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>热门赛事标签</h2>
+          <div class="tag-index" style="gap:8px;">
+            <a href="/#featured" style="font-size:13px;padding:6px 12px;">#雨与玻璃</a>
+            <a href="/#featured" style="font-size:13px;padding:6px 12px;">#每日一兽</a>
+            <a href="/#featured" style="font-size:13px;padding:6px 12px;">#六词故事</a>
+            <a href="/#featured" style="font-size:13px;padding:6px 12px;">#15秒反转</a>
+            <a href="/#featured" style="font-size:13px;padding:6px 12px;">#建筑几何</a>
+            <a href="/#featured" style="font-size:13px;padding:6px 12px;">#东方奇幻</a>
+            <a href="/#featured" style="font-size:13px;padding:6px 12px;">#一张图悬疑</a>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>近期高赞评论</h2>
+          <div class="compact-list">
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">@Mori_art</div>
+                <div class="compact-desc">“雾角鹿的设定逻辑很完整，鹿角喷雾既有视觉记忆点又符合生物想象。”</div>
+              </div>
+            </div>
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">@六词爱好者</div>
+                <div class="compact-desc">“评论区续写比正文还精彩，新增奖项早该来了。”</div>
+              </div>
+            </div>
+            <div class="compact-item">
+              <div class="compact-body">
+                <div class="compact-title">@AI_观察员</div>
+                <div class="compact-desc">“允许 AI 辅助但要求标注，这个尺度比一刀切务实得多。”</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-text">每日大赛推特</span>
+          <p>聚合推特平台每日创意挑战赛的赛程、精选作品与社区讨论，覆盖摄影、插画、文案与短视频等多元创作方向。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>赛事分类</h4>
+            <a href="/#categories">摄影挑战</a>
+            <a href="/#categories">插画速写</a>
+            <a href="/#categories">短文案比拼</a>
+            <a href="/#categories">短视频创意</a>
+          </div>
+          <div class="footer-col">
+            <h4>快速入口</h4>
+            <a href="/#featured">精选作品</a>
+            <a href="/#updates">最新动态</a>
+            <a href="/#ranking">热度榜单</a>
+            <a href="/#faq">常见问题</a>
+          </div>
+          <div class="footer-col">
+            <h4>延伸方向</h4>
+            <a href="/#related">城市夜景摄影</a>
+            <a href="/#related">奇幻生物设计</a>
+            <a href="/#related">六词恐怖故事</a>
+            <a href="/#related">一张图悬疑创作</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 每日大赛推特 · 内容聚合示例页面</span>
+        <span>部分内容为示例数据，仅用于展示页面结构</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+  </html>
