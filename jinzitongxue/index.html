@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金子同学漫画 - 校园日常与成长故事</title>
+<meta name="description" content="金子同学漫画汇聚校园日常、成长故事、搞笑短篇与连载更新，提供角色档案、分集看点、阅读顺序指南和深度解析，适合喜欢校园漫画的读者浏览。">
+<meta name="keywords" content="校园漫画，成长故事，搞笑短篇，角色档案，分集看点">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23f5b301'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%231a1a1a'%3E金%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #fdfaf3;
+    --surface: #ffffff;
+    --surface-alt: #fff8e7;
+    --ink: #1e1e1e;
+    --ink-soft: #4a4a4a;
+    --ink-mute: #7a7a7a;
+    --gold: #e6a800;
+    --gold-soft: #fbe9b7;
+    --gold-line: #f0d48a;
+    --accent: #c75b39;
+    --accent-soft: #fae5dd;
+    --line: #ece2cc;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 16px rgba(120, 90, 20, 0.08);
+    --sticky-offset: 104px;
+    --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--sticky-offset); }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  ul { list-style: none; }
+
+  /* ===== 吸顶区 ===== */
+  .sticky-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .notice-bar {
+    background: var(--ink);
+    color: #f5e6c0;
+    font-size: 13px;
+    padding: 7px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .notice-bar strong { color: #ffd23f; font-weight: 600; }
+  .notice-bar .dot { width: 5px; height: 5px; border-radius: 50%; background: #ffd23f; flex-shrink: 0; }
+
+  .site-header {
+    background: rgba(253, 250, 243, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 2px 10px rgba(120, 90, 20, 0.05);
+  }
+  .header-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+  .brand-text {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+  }
+  .brand-text span { color: var(--gold); }
+  .main-nav {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .main-nav a {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding: 5px 11px;
+    border-radius: 20px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .main-nav a:hover, .main-nav a:focus-visible {
+    background: var(--gold-soft);
+    color: var(--ink);
+    outline: none;
+  }
+  .header-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .header-search input {
+    width: 150px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: var(--font);
+    background: var(--surface);
+    color: var(--ink);
+    transition: border 0.15s, width 0.2s;
+  }
+  .header-search input:focus { outline: none; border-color: var(--gold); width: 190px; }
+  .header-search button {
+    padding: 6px 16px;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font);
+    transition: background 0.15s;
+  }
+  .header-search button:hover { background: #cf9700; }
+
+  /* ===== 首屏 ===== */
+  .hero {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 32px 24px 24px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    align-items: center;
+  }
+  .hero-copy h1 {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .hero-copy h1 em {
+    font-style: normal;
+    color: var(--gold);
+    position: relative;
+  }
+  .hero-copy h1 em::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 8px;
+    background: var(--gold-soft);
+    z-index: -1;
+    border-radius: 4px;
+  }
+  .hero-lead {
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 20px;
+    line-height: 1.75;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 26px;
+    background: var(--gold);
+    color: #fff;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.15s, transform 0.1s;
+    border: none;
+    font-family: var(--font);
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: #cf9700; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 26px;
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--gold-line);
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-outline:hover { background: var(--gold-soft); border-color: var(--gold); }
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-visual svg { width: 100%; height: auto; max-width: 380px; }
+
+  /* ===== 主内容区：三栏 ===== */
+  .layout {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+    display: grid;
+    grid-template-columns: 180px 1fr 240px;
+    gap: 28px;
+    align-items: start;
+  }
+  .col-left { position: sticky; top: var(--sticky-offset); }
+  .col-right { position: sticky; top: var(--sticky-offset); }
+
+  /* 左频道索引 */
+  .channel-index {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 0;
+    box-shadow: var(--shadow);
+  }
+  .channel-index h2 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-mute);
+    letter-spacing: 1.5px;
+    padding: 0 18px 10px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .channel-index a {
+    display: block;
+    padding: 8px 18px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    transition: background 0.15s, color 0.15s, padding-left 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .channel-index a:hover, .channel-index a:focus-visible {
+    background: var(--gold-soft);
+    color: var(--ink);
+    padding-left: 22px;
+    border-left-color: var(--gold);
+    outline: none;
+  }
+
+  /* 右辅助栏 */
+  .side-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+  .side-card h2 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .side-card h2 .ico { color: var(--gold); font-size: 16px; }
+  .rank-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .rank-list li:last-child { border-bottom: none; }
+  .rank-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .rank-list li:nth-child(1) .rank-num { background: var(--gold); color: #fff; }
+  .rank-list li:nth-child(2) .rank-num { background: #e8c25a; color: #fff; }
+  .rank-list li:nth-child(3) .rank-num { background: #f0d48a; color: #8a6d1a; }
+  .rank-list a { color: var(--ink-soft); transition: color 0.15s; }
+  .rank-list a:hover { color: var(--gold); }
+  .update-stream li {
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .update-stream li:last-child { border-bottom: none; }
+  .update-stream li span.tag {
+    display: inline-block;
+    font-size: 11px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    padding: 1px 7px;
+    border-radius: 10px;
+    margin-right: 5px;
+    font-weight: 600;
+  }
+
+  /* ===== 主内容列 ===== */
+  .main-col > section { margin-bottom: 36px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .section-head h2 {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 14px;
+  }
+  .section-head h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 4px;
+    border-radius: 2px;
+    background: var(--gold);
+  }
+  .section-head .section-note {
+    font-size: 13px;
+    color: var(--ink-mute);
+  }
+
+  /* 概览 */
+  .overview-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+  .overview-box p + p { margin-top: 12px; }
+  .overview-box strong { color: var(--ink); }
+
+  /* 精选卡片 */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .comic-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: flex;
+    flex-direction: column;
+  }
+  .comic-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(120, 90, 20, 0.13); }
+  .comic-card .thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: var(--gold-soft);
+  }
+  .comic-card .card-body { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; }
+  .comic-card .type-tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 9px;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    align-self: flex-start;
+  }
+  .comic-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .comic-card .card-desc {
+    font-size: 13px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 10px;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+  .card-meta .score { color: var(--gold); font-weight: 700; }
+  .card-meta .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--line); }
+
+  /* 更新动态列表 */
+  .update-list {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .update-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 13px 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+  .update-list li:last-child { border-bottom: none; }
+  .update-list li:hover { background: var(--surface-alt); }
+  .update-list .u-date {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 72px;
+  }
+  .update-list .u-name { font-weight: 600; color: var(--ink); flex-shrink: 0; }
+  .update-list .u-summary { color: var(--ink-mute); font-size: 13px; }
+
+  /* 分类入口 */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .cat-item {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink-soft);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    text-align: center;
+  }
+  .cat-item:hover, .cat-item:focus-visible {
+    background: var(--gold-soft);
+    border-color: var(--gold-line);
+    color: var(--ink);
+    outline: none;
+  }
+  .cat-item small {
+    display: block;
+    font-weight: 400;
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    margin-top: 3px;
+  }
+
+  /* 深度解析 */
+  .deep-dive {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    box-shadow: var(--shadow);
+  }
+  .deep-dive h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 22px 0 10px;
+    color: var(--ink);
+    padding-left: 10px;
+    border-left: 3px solid var(--gold);
+  }
+  .deep-dive h3:first-child { margin-top: 0; }
+  .deep-dive p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+  .deep-dive ul {
+    margin: 10px 0 14px 6px;
+  }
+  .deep-dive ul li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+  .deep-dive ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .deep-dive strong { color: var(--ink); }
+
+  /* 体验指南：步骤 */
+  .guide-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .step-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .step-card p {
+    font-size: 13.5px;
+    color: var(--ink-mute);
+    line-height: 1.65;
+  }
+
+  /* FAQ */
+  .faq-list details {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .faq-list details[open] { border-color: var(--gold-line); }
+  .faq-list summary {
+    padding: 14px 20px;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transition: background 0.15s;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after {
+    content: "+";
+    font-size: 19px;
+    color: var(--gold);
+    font-weight: 400;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+  .faq-list details[open] summary::after {
+    content: "−";
+    transform: rotate(180deg);
+  }
+  .faq-list summary:hover { background: var(--surface-alt); }
+  .faq-list .faq-answer {
+    padding: 0 20px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    border-top: 1px dashed var(--line);
+    padding-top: 12px;
+    margin-top: 0;
+  }
+
+  /* 评论 */
+  .comment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .comment-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    box-shadow: 0 2px 8px rgba(120, 90, 20, 0.04);
+  }
+  .comment-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .comment-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .comment-name { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+  .comment-text { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; }
+  .comment-text .mention { color: var(--gold); font-weight: 600; }
+
+  /* 资讯 */
+  .news-list li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+    align-items: flex-start;
+  }
+  .news-list li:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 100px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    background: var(--gold-soft);
+  }
+  .news-body { flex: 1; min-width: 0; }
+  .news-body h3 {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+    margin-bottom: 4px;
+  }
+  .news-body h3 a { transition: color 0.15s; }
+  .news-body h3 a:hover { color: var(--gold); }
+  .news-body .news-date {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-bottom: 3px;
+  }
+  .news-body .news-summary {
+    font-size: 13px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+  }
+
+  /* 相关推荐标签 */
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+  .tag-cloud a {
+    display: inline-block;
+    padding: 7px 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .tag-cloud a:hover, .tag-cloud a:focus-visible {
+    background: var(--gold-soft);
+    border-color: var(--gold-line);
+    color: var(--ink);
+    outline: none;
+  }
+
+  /* 补充板块：时间线 */
+  .timeline {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+  }
+  .timeline li {
+    position: relative;
+    padding: 0 0 20px 26px;
+    border-left: 2px solid var(--gold-line);
+  }
+  .timeline li:last-child { padding-bottom: 0; border-left-color: transparent; }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--gold-line);
+  }
+  .timeline .tl-date { font-size: 12.5px; color: var(--gold); font-weight: 600; }
+  .timeline .tl-title { font-size: 14.5px; font-weight: 600; margin: 2px 0; }
+  .timeline .tl-desc { font-size: 13px; color: var(--ink-mute); line-height: 1.6; }
+
+  /* ===== 页尾 ===== */
+  .site-footer {
+    background: var(--ink);
+    color: #c9c0ad;
+    padding: 40px 24px 24px;
+    margin-top: 20px;
+  }
+  .footer-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  .footer-brand .brand-text { color: #fff; font-size: 20px; margin-bottom: 8px; }
+  .footer-brand p { font-size: 13px; line-height: 1.7; color: #a89e8a; max-width: 280px; }
+  .footer-col h3 {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    color: #a89e8a;
+    padding: 3px 0;
+    transition: color 0.15s;
+  }
+  .footer-col a:hover { color: #ffd23f; }
+  .footer-bottom {
+    max-width: 1360px;
+    margin: 28px auto 0;
+    padding-top: 18px;
+    border-top: 1px solid #3a362e;
+    font-size: 12px;
+    color: #7a7264;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 1024px) {
+    .layout {
+      grid-template-columns: 170px 1fr;
+    }
+    .col-right {
+      position: static;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .col-right .side-card { margin-bottom: 0; }
+    .hero { grid-template-columns: 1fr 280px; gap: 20px; }
+    .hero-copy h1 { font-size: 32px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 740px) {
+    :root { --sticky-offset: 96px; }
+    .header-inner { flex-wrap: wrap; gap: 10px; padding: 10px 16px; }
+    .main-nav { order: 3; width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; gap: 2px; }
+    .main-nav a { font-size: 13px; padding: 4px 9px; }
+    .header-search { order: 2; margin-left: auto; }
+    .header-search input { width: 120px; }
+    .header-search input:focus { width: 140px; }
+    .hero { grid-template-columns: 1fr; padding: 24px 16px 18px; gap: 18px; }
+    .hero-copy h1 { font-size: 28px; }
+    .hero-visual { order: -1; max-width: 260px; margin: 0 auto; }
+    .layout { grid-template-columns: 1fr; padding: 0 16px 36px; }
+    .col-left { position: static; }
+    .channel-index { display: flex; flex-wrap: wrap; padding: 10px; gap: 4px; }
+    .channel-index h2 { width: 100%; padding: 0 4px 6px; margin-bottom: 2px; }
+    .channel-index a { display: inline-block; padding: 5px 11px; border-radius: 16px; border-left: none; font-size: 13px; }
+    .channel-index a:hover { padding-left: 11px; border-left: none; background: var(--gold-soft); }
+    .col-right { grid-template-columns: 1fr; }
+    .deep-dive { padding: 20px 18px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .comment-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+    .section-head h2 { font-size: 19px; }
+    .news-thumb { width: 80px; height: 56px; }
+    .update-list li { flex-wrap: wrap; gap: 4px 10px; padding: 11px 14px; }
+    .update-list .u-date { width: auto; }
+    .guide-steps { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .notice-bar { font-size: 12px; padding: 6px 12px; }
+  }
+  @media (max-width: 400px) {
+    .cat-grid { grid-template-columns: 1fr; }
+    .header-search input { width: 100px; }
+  }
+
+  /* 搜索无结果反馈 */
+  .no-result {
+    display: none;
+    padding: 16px;
+    background: var(--surface-alt);
+    border: 1px dashed var(--gold-line);
+    border-radius: var(--radius-sm);
+    color: var(--ink-mute);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 12px;
+  }
+  .no-result.show { display: block; }
+
+  /* 焦点可见 */
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="sticky-wrap">
+  <div class="notice-bar" role="status">
+    <span class="dot" aria-hidden="true"></span>
+    <span><strong>本周更新</strong> 《金子同学》第 47 话已上线 · 新增「运动会篇」角色档案 6 条</span>
+    <span class="dot" aria-hidden="true"></span>
+    <span>「搞笑短篇」分类 11 月 5 日新增 8 部作品</span>
+  </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/#top" aria-label="金子同学漫画 首页">
+        <svg class="brand-logo" viewBox="0 0 100 100" role="img" aria-label="金子同学漫画标志">
+          <rect width="100" height="100" rx="20" fill="#f5b301"/>
+          <circle cx="50" cy="42" r="17" fill="#fff8e7"/>
+          <circle cx="43" cy="39" r="3" fill="#1e1e1e"/>
+          <circle cx="57" cy="39" r="3" fill="#1e1e1e"/>
+          <path d="M42 50 Q50 57 58 50" stroke="#1e1e1e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <rect x="26" y="66" width="48" height="10" rx="5" fill="#c75b39"/>
+        </svg>
+        <span class="brand-text">金子<span>同学</span>漫画</span>
+      </a>
+      <nav class="main-nav" aria-label="主题导航">
+        <a href="/#overview">作品概览</a>
+        <a href="/#featured">精选推荐</a>
+        <a href="/#updates">更新动态</a>
+        <a href="/#categories">分类入口</a>
+        <a href="/#deep-dive">深度解析</a>
+        <a href="/#guide">阅读指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">读者评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#related">延伸方向</a>
+        <a href="/#timeline">连载时间线</a>
+      </nav>
+      <div class="header-search">
+        <label for="site-search" class="sr-only">搜索漫画条目</label>
+        <input type="search" id="site-search" placeholder="搜索条目…" autocomplete="off">
+        <button type="button" id="search-btn">查找</button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 id="hero-title">金子同学漫画</h1>
+      <p class="hero-lead">围绕校园日常、成长烦恼和搞笑短篇展开的漫画内容聚合页。收录连载条目、角色档案、分集看点、读者讨论和类型对比分析，帮助你在不同类型的校园故事里找到想追的那一部。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="/#featured">浏览精选条目</a>
+        <a class="btn-outline" href="/#updates">查看最新更新</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 400 320" role="img" aria-label="校园漫画阅读场景">
+        <rect x="20" y="30" width="360" height="260" rx="18" fill="#fff8e7" stroke="#f0d48a" stroke-width="2"/>
+        <rect x="48" y="62" width="130" height="150" rx="8" fill="#ffffff" stroke="#ece2cc" stroke-width="1.5"/>
+        <line x1="64" y1="86" x2="162" y2="86" stroke="#f0d48a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="64" y1="104" x2="148" y2="104" stroke="#ece2cc" stroke-width="3" stroke-linecap="round"/>
+        <line x1="64" y1="120" x2="156" y2="120" stroke="#ece2cc" stroke-width="3" stroke-linecap="round"/>
+        <line x1="64" y1="136" x2="132" y2="136" stroke="#ece2cc" stroke-width="3" stroke-linecap="round"/>
+        <rect x="64" y="154" width="98" height="42" rx="6" fill="#fbe9b7"/>
+        <circle cx="90" cy="175" r="9" fill="#e6a800"/>
+        <path d="M84 175 Q90 183 96 175" stroke="#fff" stroke-width="1.8" fill="none"/>
+        <rect x="200" y="62" width="160" height="72" rx="8" fill="#ffffff" stroke="#ece2cc" stroke-width="1.5"/>
+        <line x1="216" y1="82" x2="330" y2="82" stroke="#c75b39" stroke-width="3" stroke-linecap="round"/>
+        <line x1="216" y1="98" x2="300" y2="98" stroke="#ece2cc" stroke-width="3" stroke-linecap="round"/>
+        <line x1="216" y1="114" x2="316" y2="114" stroke="#ece2cc" stroke-width="3" stroke-linecap="round"/>
+        <rect x="200" y="150" width="160" height="62" rx="8" fill="#ffffff" stroke="#ece2cc" stroke-width="1.5"/>
+        <line x1="216" y1="170" x2="310" y2="170" stroke="#e6a800" stroke-width="3" stroke-linecap="round"/>
+        <line x1="216" y1="186" x2="336" y2="186" stroke="#ece2cc" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="60" cy="262" r="14" fill="#fbe9b7"/>
+        <circle cx="100" cy="262" r="14" fill="#fae5dd"/>
+        <circle cx="140" cy="262" r="14" fill="#fbe9b7"/>
+        <rect x="200" y="246" width="80" height="26" rx="13" fill="#e6a800"/>
+        <text x="240" y="264" font-size="13" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="bold">追更</text>
+        <rect x="300" y="246" width="60" height="26" rx="13" fill="#f0d48a"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 三栏布局 -->
+  <div class="layout">
+
+    <!-- 左频道索引 -->
+    <aside class="col-left">
+      <nav class="channel-index" aria-label="频道索引">
+        <h2>频道索引</h2>
+        <a href="/#overview">作品概览</a>
+        <a href="/#featured">精选推荐</a>
+        <a href="/#updates">更新动态</a>
+        <a href="/#categories">分类入口</a>
+        <a href="/#deep-dive">深度解析</a>
+        <a href="/#guide">阅读指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">读者评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#related">延伸方向</a>
+        <a href="/#timeline">连载时间线</a>
+      </nav>
+    </aside>
+
+    <!-- 主内容列 -->
+    <div class="main-col">
+
+      <!-- 1. 主题领域概览 -->
+      <section id="overview" aria-labelledby="overview-title">
+        <div class="section-head">
+          <h2 id="overview-title">作品概览与类型分布</h2>
+          <span class="section-note">2026-11-08 整理</span>
+        </div>
+        <div class="overview-box">
+          <p><strong>金子同学漫画</strong>以校园生活为底色，延伸出日常搞笑、成长烦恼、社团活动、青春友情与家庭互动等多个方向。当前连载中的主干作品围绕主角金子同学的班级日常展开，每话一个独立小事件，同时又通过学期、考试、运动会等节点串联成完整时间线。除了连载主线，还衍生出以配角视角展开的番外短篇，以及聚焦特定场景（如食堂、图书馆、上下学路上）的单元篇章。</p>
+          <p>从读者反馈来看，<strong>校园搞笑短篇</strong>和<strong>角色成长故事</strong>是两条最受关注的支线。前者节奏快、每话三到五分钟可读完，适合碎片时间；后者篇幅稍长，着重描写角色的心理变化和人际关系，更适合完整阅读。此外，围绕班级群像展开的<strong>群像日常</strong>和聚焦师生互动的<strong>课堂故事</strong>也积累了不少条目。</p>
+          <p>按更新节奏区分，主线连载保持每周一话，番外短篇则不定时穿插。按篇幅区分，既有 20 页左右的短篇，也有 40 页以上的学期特别篇。按阅读门槛区分，大部分条目可以从任意一话进入，而涉及角色背景的篇章建议按时间线顺序阅读。近期新增内容集中在运动会篇与期中考试篇，角色档案也同步扩充了啦啦队和广播站两组人物。</p>
+        </div>
+      </section>
+
+      <!-- 2. 精选内容推荐 -->
+      <section id="featured" aria-labelledby="featured-title">
+        <div class="section-head">
+          <h2 id="featured-title">精选条目推荐</h2>
+          <span class="section-note">按读者评分与更新热度综合排列</span>
+        </div>
+        <div class="card-grid" id="featured-grid">
+          <article class="comic-card">
+            <img class="thumb" src="https://picsum.photos/seed/jinzi-tongxue01/400/300" alt="金子同学漫画运动会篇封面" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="type-tag">校园搞笑</span>
+              <h3>运动会篇：借物赛跑的意外搭档</h3>
+              <p class="card-desc">秋季运动会借物赛跑环节，金子同学抽到“最不想借给他东西的人”纸条，被迫与班长组队。全程高密度吐槽与临场反应，是近期番外中节奏最紧凑的一话。</p>
+              <div class="card-meta"><span class="score">9.1</span><span class="dot-sep"></span><span>更新于 11 月 6 日</span><span class="dot-sep"></span><span>热度 4.2 万</span></div>
+            </div>
+          </article>
+          <article class="comic-card">
+            <img class="thumb" src="https://picsum.photos/seed/jinzi-qiuzhong02/400/300" alt="金子同学期中考试成绩单风波插图" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="type-tag">成长故事</span>
+              <h3>期中篇：成绩单上的红笔批注</h3>
+              <p class="card-desc">金子同学把数学卷子藏在书包夹层，却被母亲整理书包时翻出。围绕一张卷子的对话从晚饭持续到临睡前，细腻刻画亲子之间不说破的关心。</p>
+              <div class="card-meta"><span class="score">8.8</span><span class="dot-sep"></span><span>更新于 11 月 3 日</span><span class="dot-sep"></span><span>热度 3.7 万</span></div>
+            </div>
+          </article>
+          <article class="comic-card">
+            <img class="thumb" src="https://picsum.photos/seed/jinzi-shetuan03/400/300" alt="金子同学漫画社团招新篇插图" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="type-tag">群像日常</span>
+              <h3>社团招新篇：广播站与文学社的抢人战</h3>
+              <p class="card-desc">开学第一周，广播站站长和文学社社长同时盯上金子同学，轮番上门游说。配角性格在这一篇里集中展开，适合想先了解群像关系的读者。</p>
+              <div class="card-meta"><span class="score">8.6</span><span class="dot-sep"></span><span>更新于 10 月 28 日</span><span class="dot-sep"></span><span>热度 3.1 万</span></div>
+            </div>
+          </article>
+          <article class="comic-card">
+            <img class="thumb" src="https://picsum.photos/seed/jinzi-shitang04/400/300" alt="金子同学食堂限时菜单篇插图" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="type-tag">单元短篇</span>
+              <h3>食堂篇：限量炸鸡排的午休争夺战</h3>
+              <p class="card-desc">每周三限量供应炸鸡排，金子同学和同桌约定轮流排队。一次值日冲突让计划打乱，围绕一份鸡排展开的午休小剧场，三分钟可读完。</p>
+              <div class="card-meta"><span class="score">8.4</span><span class="dot-sep"></span><span>更新于 11 月 1 日</span><span class="dot-sep"></span><span>热度 2.8 万</span></div>
+            </div>
+          </article>
+          <article class="comic-card">
+            <img class="thumb" src="https://picsum.photos/seed/jinzi-lao shi05/400/300" alt="金子同学班主任家访篇插图" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="type-tag">课堂故事</span>
+              <h3>家访篇：班主任来访的那个周末</h3>
+              <p class="card-desc">班主任提前一天通知家访，金子同学全家进入紧急整理模式。从客厅到书桌，每个角落都藏着一段家庭记忆，是家庭互动线的重要一话。</p>
+              <div class="card-meta"><span class="score">8.9</span><span class="dot-sep"></span><span>更新于 10 月 25 日</span><span class="dot-sep"></span><span>热度 3.5 万</span></div>
+            </div>
+          </article>
+          <article class="comic-card">
+            <img class="thumb" src="https://picsum.photos/seed/jinzi-shangxue06/400/300" alt="金子同学下雨天上学路插图" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="type-tag">日常短篇</span>
+              <h3>梅雨篇：一把伞和三个顺路的同学</h3>
+              <p class="card-desc">突降暴雨，金子同学只带了一把小伞，却陆续遇到三个没带伞的同班同学。如何分配伞下空间，成为这一话最实际的难题。</p>
+              <div class="card-meta"><span class="score">8.2</span><span class="dot-sep"></span><span>更新于 10 月 20 日</span><span class="dot-sep"></span><span>热度 2.4 万</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3. 最新更新动态 -->
+      <section id="updates" aria-labelledby="updates-title">
+        <div class="section-head">
+          <h2 id="updates-title">最新更新动态</h2>
+          <span class="section-note">截至 2026-11-08 09:30</span>
+        </div>
+        <ul class="update-list">
+          <li><span class="u-date">今天 09:30</span><span class="u-name">《金子同学》第 47 话</span><span class="u-summary">「运动会篇·下」已上线，借物赛跑后半程与班级接力赛结果揭晓。</span></li>
+          <li><span class="u-date">今天 08:15</span><span class="u-name">角色档案</span><span class="u-summary">新增广播站站长「林小满」档案，含社团职务、口头禅和代表场景 6 条。</span></li>
+          <li><span class="u-date">昨天 21:10</span><span class="u-name">番外短篇</span><span class="u-summary">「图书馆午休篇」更新，讲述金子同学在图书馆偶遇隔壁班学习委员的午后。</span></li>
+          <li><span class="u-date">11 月 6 日</span><span class="u-name">《运动会特别篇》</span><span class="u-summary">彩页版上线，包含啦啦队全员立绘与广播稿全文摘录。</span></li>
+          <li><span class="u-date">11 月 5 日</span><span class="u-name">分类新增</span><span class="u-summary">「搞笑短篇」分类下新增 8 部同类校园作品入口。</span></li>
+          <li><span class="u-date">11 月 4 日</span><span class="u-name">《金子同学》第 46 话</span><span class="u-summary">「运动会篇·上」上线，报名项目抽签结果引发全班讨论。</span></li>
+          <li><span class="u-date">11 月 2 日</span><span class="u-name">作者留言</span><span class="u-summary">更新创作手记，说明运动会篇中接力赛分镜的调整过程。</span></li>
+          <li><span class="u-date">10 月 30 日</span><span class="u-name">期中篇</span><span class="u-summary">补完「成绩单上的红笔批注」后篇，加入母亲青年时代的成绩单彩蛋。</span></li>
+          <li><span class="u-date">10 月 28 日</span><span class="u-name">社团招新篇</span><span class="u-summary">广播站与文学社抢人战上线，评论区发起「你会加入哪个社团」投票。</span></li>
+          <li><span class="u-date">10 月 25 日</span><span class="u-name">家访篇</span><span class="u-summary">班主任家访篇上线，同步更新家庭关系图谱。</span></li>
+        </ul>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section id="categories" aria-labelledby="categories-title">
+        <div class="section-head">
+          <h2 id="categories-title">分类入口</h2>
+          <span class="section-note">按类型与场景筛选</span>
+        </div>
+        <div class="cat-grid">
+          <a class="cat-item" href="/#featured">校园搞笑<small>快节奏吐槽日常</small></a>
+          <a class="cat-item" href="/#featured">成长故事<small>角色心理与变化</small></a>
+          <a class="cat-item" href="/#featured">群像日常<small>多人互动与配角</small></a>
+          <a class="cat-item" href="/#featured">课堂故事<small>师生与学习场景</small></a>
+          <a class="cat-item" href="/#featured">家庭互动<small>亲子与家庭关系</small></a>
+          <a class="cat-item" href="/#featured">单元短篇<small>独立成篇的小事件</small></a>
+          <a class="cat-item" href="/#featured">番外视角<small>配角与外传故事</small></a>
+          <a class="cat-item" href="/#featured">学期特别篇<small>节点性长篇内容</small></a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析正文 -->
+      <section id="deep-dive" aria-labelledby="deep-dive-title">
+        <div class="section-head">
+          <h2 id="deep-dive-title">深度解析：校园漫画的类型差异与阅读判断</h2>
+        </div>
+        <div class="deep-dive">
+          <h3>连载主线与单元短篇的结构差异</h3>
+          <p>金子同学漫画的主线连载采用「学期推进」结构，每一话围绕一个具体事件展开，但事件之间通过时间节点（开学、月考、运动会、期末）串联。这种结构的优势是单话阅读门槛低，同时长期追更能看到角色关系的累积变化。相比之下，单元短篇更强调「一个场景解决一个问题」，例如食堂限时菜单篇、下雨天借伞篇，篇幅短、冲突集中，适合在零碎时间里快速读完。</p>
+          <p>判断一部作品是否适合自己，可以先看它属于哪种结构。如果你喜欢在碎片时间读一个完整的小故事，单元短篇更合适；如果你更在意角色关系的长期发展，主线连载的连续感会更强。两类内容并不冲突，很多读者会按「主线追更、短篇补漏」的方式组合阅读。</p>
+
+          <h3>搞笑短篇与成长故事的情绪落点</h3>
+          <p>搞笑短篇的核心在于「意外」和「反差」，通常在前两页建立日常情境，中间抛出意外状况，结尾用一句吐槽或一个表情收束。它的阅读快感来自节奏和反应，判断标准是笑点是否自然、角色反应是否符合人设。成长故事则更看重情绪落点的真实性，比如期中篇围绕一张成绩单展开，重点不在分数本身，而在家人之间如何表达关心。</p>
+          <ul>
+            <li><strong>搞笑短篇</strong>：看包袱密度与角色反应是否一致，适合通勤、课间阅读。</li>
+            <li><strong>成长故事</strong>：看事件是否推动角色变化，适合完整时间段沉浸阅读。</li>
+            <li><strong>群像日常</strong>：看配角是否有独立动机，适合喜欢人物关系的读者。</li>
+            <li><strong>课堂故事</strong>：看师生互动是否具体，适合关注校园细节的读者。</li>
+          </ul>
+
+          <h3>角色档案的阅读价值</h3>
+          <p>角色档案不是简单的设定罗列，而是帮助读者理解人物行为逻辑的辅助材料。以广播站站长林小满为例，档案中注明她「习惯在正式广播前默念三遍稿子」，这一细节解释了她为什么在社团抢人战中表现得格外执着。先读档案再读相关篇章，能更快捕捉到对话里的潜台词；反过来，先读篇章再补档案，则会有一种「原来如此」的回看乐趣。</p>
+          <p>对于新读者，建议先读两到三话主线，建立对主角金子同学的基本印象，再按兴趣翻阅配角档案。这样不会在大量设定中迷失，也能保持阅读的新鲜感。</p>
+
+          <h3>学期特别篇的篇幅与节奏取舍</h3>
+          <p>学期特别篇通常有 40 页以上，覆盖一个完整节点，例如运动会从报名到闭幕。这类内容信息量大，但节奏会比日常短篇稍缓。阅读时可以留意三个层次：事件主线（比赛进程）、角色支线（谁和谁组队、谁在观众席）、细节彩蛋（广播稿、记分牌、观众席标语）。三个层次叠加，才是特别篇的完整阅读体验。</p>
+          <p>如果时间有限，可以先读事件主线和关键角色支线，细节彩蛋留到二刷。特别篇的价值往往在第二遍阅读时才完全显现，因为第一遍容易被主线带着走，忽略背景里的信息。</p>
+        </div>
+      </section>
+
+      <!-- 6. 体验指南 -->
+      <section id="guide" aria-labelledby="guide-title">
+        <div class="section-head">
+          <h2 id="guide-title">阅读指南：从哪一篇开始</h2>
+          <span class="section-note">按阅读目的选择入口</span>
+        </div>
+        <div class="guide-steps">
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <h3>先试读单元短篇</h3>
+            <p>从「食堂篇」或「梅雨篇」开始，三到五分钟读完一话，快速感受画风和吐槽节奏，判断是否对味。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <h3>再进入主线连载</h3>
+            <p>从第 40 话左右的学期开端读起，跟随金子同学经历运动会和期中考试，建立对角色关系的基本认知。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <h3>按兴趣补角色档案</h3>
+            <p>对广播站、文学社或啦啦队感兴趣时，再翻阅对应角色档案，补充配角的行为动机和代表场景。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">4</span>
+            <h3>比较同类作品</h3>
+            <p>读完主线后，可到「搞笑短篇」分类对比其他校园作品，从笑点密度和角色塑造两个维度做横向判断。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section id="faq" aria-labelledby="faq-title">
+        <div class="section-head">
+          <h2 id="faq-title">常见问答</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>金子同学漫画一般多久更新一次？</summary>
+            <p class="faq-answer">主线连载保持每周一话，通常在周四或周五上线；番外短篇和角色档案不定时穿插，平均每月两到三次。学期特别篇因为页数较多，会提前一周在更新动态里预告。</p>
+          </details>
+          <details>
+            <summary>第一次接触应该从哪一篇开始看？</summary>
+            <p class="faq-answer">推荐从「食堂篇：限量炸鸡排的午休争夺战」或「梅雨篇：一把伞和三个顺路的同学」入手，这两篇都是独立单元，篇幅短、角色关系简单，能快速了解基本风格。如果读完觉得对味，再从运动会篇进入主线。</p>
+          </details>
+          <details>
+            <summary>搞笑短篇和成长故事的主要区别是什么？</summary>
+            <p class="faq-answer">搞笑短篇以意外和反差制造笑点，情绪落点轻快，通常一到三话结束；成长故事更注重角色在事件中的心理变化，篇幅稍长，冲突解决后会留下关系上的变化。两者在画风和分镜节奏上也有差异，前者分镜更碎、反应特写更多。</p>
+          </details>
+          <details>
+            <summary>角色档案需要按顺序读吗？</summary>
+            <p class="faq-answer">不需要。每份角色档案独立成篇，按人物归类，先读谁取决于你对哪个配角感兴趣。不过档案里会标注该角色主要出场的篇章，配合对应篇章一起读，理解会更完整。</p>
+          </details>
+          <details>
+            <summary>学期特别篇和普通连载有什么区别？</summary>
+            <p class="faq-answer">特别篇篇幅更长，覆盖一个完整节点（如运动会全程），信息密度更高，背景细节也更丰富。普通连载每话聚焦一个小事件，节奏更快。特别篇适合留出完整时间阅读，普通连载适合碎片时间追更。</p>
+          </details>
+          <details>
+            <summary>怎么判断一部校园漫画是否适合自己？</summary>
+            <p class="faq-answer">可以先看两点：一是笑点是否自然，试读一话看反应是否让你会心一笑；二是角色是否有具体动机，而不是只靠标签推动剧情。如果这两点都成立，再考虑是否追更。同类作品对比时，重点看配角塑造和日常细节的丰富度。</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section id="comments" aria-labelledby="comments-title">
+        <div class="section-head">
+          <h2 id="comments-title">读者评论</h2>
+          <span class="section-note">来自条目讨论区</span>
+        </div>
+        <div class="comment-grid">
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">林</span><span class="comment-name">林间小径</span></div><p class="comment-text">运动会篇的借物赛跑太好笑了，金子抽到那张纸条时的表情能看十遍。<span class="mention">第 47 话</span>接力赛收尾也很稳。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">陈</span><span class="comment-name">陈年旧书</span></div><p class="comment-text">期中篇看哭了，成绩单那条线其实是在讲妈妈怎么表达关心，红笔批注那个细节很戳。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">阿</span><span class="comment-name">阿九不喝酒</span></div><p class="comment-text">社团招新篇里广播站站长的台词写得好，林小满这个角色立住了，档案补得也及时。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">三</span><span class="comment-name">三分钟热度</span></div><p class="comment-text">食堂篇适合午休看，短小精悍。不过炸鸡排的争夺战感觉还能再展开一话。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">半</span><span class="comment-name">半糖去冰</span></div><p class="comment-text">家访篇的家庭关系图谱做得细，但个人觉得节奏比运动会篇慢了一点，适合安静的时候看。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">路</span><span class="comment-name">路过打酱油</span></div><p class="comment-text">梅雨篇借伞那段很真实，谁没经历过一把小伞挤三个人的放学路。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">小</span><span class="comment-name">小满的稿子</span></div><p class="comment-text">作为广播站爱好者，林小满档案里「默念三遍稿子」的设定太懂了，希望多出点广播站日常。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">金</span><span class="comment-name">金鱼脑追更</span></div><p class="comment-text">每周四蹲更新，47 话彩页值了。啦啦队立绘比想象中丰富，广播稿全文也贴出来了。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">北</span><span class="comment-name">北窗听雨</span></div><p class="comment-text">整体不错，但希望单元短篇的配角也能有后续，食堂篇那个同桌挺有意思的。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">一</span><span class="comment-name">一只咸鱼</span></div><p class="comment-text">从搞笑短篇分类点进来的，对比了几部校园漫画，金子同学的吐槽节奏最自然。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">番</span><span class="comment-name">番茄不炒蛋</span></div><p class="comment-text">作者手记里讲接力赛分镜调整那段挺有收获，原来观众席视角是后加进去的。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">书</span><span class="comment-name">书包夹层</span></div><p class="comment-text">期中篇后篇那个母亲青年时代成绩单的彩蛋，翻回去看了两遍才注意到，细节控狂喜。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">柠</span><span class="comment-name">柠檬气泡水</span></div><p class="comment-text">图书馆午休篇是新番外吧？金子同学和学习委员的对话有点意思，期待后续展开。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">慢</span><span class="comment-name">慢半拍</span></div><p class="comment-text">家访篇和期中篇连着看，家庭线就串起来了。建议新读者按学期顺序读，体验更好。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">叽</span><span class="comment-name">叽叽喳喳</span></div><p class="comment-text">社团抢人战里文学社社长那段也挺逗，虽然戏份少但存在感很强，希望有独立番外。</p></div>
+          <div class="comment-card"><div class="comment-head"><span class="comment-avatar">中</span><span class="comment-name">中场休息</span></div><p class="comment-text">运动会篇上下两话连着读最舒服，单看下话的话有些人物关系会稍微接不上。</p></div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section id="news" aria-labelledby="news-title">
+        <div class="section-head">
+          <h2 id="news-title">相关资讯</h2>
+          <span class="section-note">近两周校园漫画动态</span>
+        </div>
+        <ul class="news-list">
+          <li>
+            <img class="news-thumb" src="https://picsum.photos/seed/jinzi-yundonghui-news/600/400" alt="金子同学运动会特别篇彩页资讯配图" width="100" height="68" loading="lazy">
+            <div class="news-body">
+              <h3><a href="/#featured">《金子同学》运动会特别篇彩页上线，啦啦队全员立绘公开</a></h3>
+              <div class="news-date">2026-11-06</div>
+              <p class="news-summary">特别篇彩页包含啦啦队六人立绘与入场广播稿全文，作者同步更新分镜调整说明。</p>
+            </div>
+          </li>
+          <li>
+            <img class="news-thumb" src="https://picsum.photos/seed/jinzi-xiaoyuan-fenlei/600/400" alt="校园搞笑短篇分类新增作品配图" width="100" height="68" loading="lazy">
+            <div class="news-body">
+              <h3><a href="/#categories">「搞笑短篇」分类新增 8 部校园作品，聚焦课间与午休场景</a></h3>
+              <div class="news-date">2026-11-05</div>
+              <p class="news-summary">新增条目多围绕课间十分钟、食堂排队、值日分工等具体场景展开，与金子同学漫画的单元短篇形成对比阅读。</p>
+            </div>
+          </li>
+          <li>
+            <img class="news-thumb" src="https://picsum.photos/seed/jinzi-juzu-taolun/600/400" alt="读者讨论群像漫画配角塑造配图" width="100" height="68" loading="lazy">
+            <div class="news-body">
+              <h3><a href="/#comments">读者讨论焦点转向群像配角，广播站站长支持率上升</a></h3>
+              <div class="news-date">2026-11-03</div>
+              <p class="news-summary">讨论区发起「最想看到谁的个人番外」投票，林小满与文学社社长票数接近，作者在留言中回应会考虑。</p>
+            </div>
+          </li>
+          <li>
+            <img class="news-thumb" src="https://picsum.photos/seed/jinzi-shouji-hetong/600/400" alt="作者创作手记更新配图" width="100" height="68" loading="lazy">
+            <div class="news-body">
+              <h3><a href="/#timeline">作者更新创作手记，谈运动会篇接力赛分镜的两次调整</a></h3>
+              <div class="news-date">2026-11-02</div>
+              <p class="news-summary">手记说明初版分镜集中在赛道视角，后加入观众席与广播站两条视线，使比赛过程更立体。</p>
+            </div>
+          </li>
+          <li>
+            <img class="news-thumb" src="https://picsum.photos/seed/jinzi-qizhong-bugao/600/400" alt="期中篇补完内容配图" width="100" height="68" loading="lazy">
+            <div class="news-body">
+              <h3><a href="/#updates">期中篇补完后篇，加入母亲青年时代成绩单彩蛋</a></h3>
+              <div class="news-date">2026-10-30</div>
+              <p class="news-summary">后篇在书桌抽屉场景中加入一张旧成绩单，与当前时间线形成对照，读者反馈这一细节提升了家庭线的厚度。</p>
+            </div>
+          </li>
+          <li>
+            <img class="news-thumb" src="https://picsum.photos/seed/jinzi-shetuan-toupiao/600/400" alt="社团招新篇投票活动配图" width="100" height="68" loading="lazy">
+            <div class="news-body">
+              <h3><a href="/#comments">社团招新篇评论区发起投票：广播站还是文学社</a></h3>
+              <div class="news-date">2026-10-28</div>
+              <p class="news-summary">投票在条目讨论区置顶，截至 11 月 7 日广播站以微弱优势领先，评论区出现大量配角动机分析。</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section id="related" aria-labelledby="related-title">
+        <div class="section-head">
+          <h2 id="related-title">延伸方向与关联条目</h2>
+        </div>
+        <div class="tag-cloud">
+          <a href="/#featured">校园群像漫画推荐</a>
+          <a href="/#featured">课间十分钟短篇</a>
+          <a href="/#featured">社团活动题材</a>
+          <a href="/#featured">亲子关系漫画</a>
+          <a href="/#featured">运动会篇角色关系梳理</a>
+          <a href="/#featured">广播站站长林小满</a>
+          <a href="/#featured">单元短篇与主线对照</a>
+          <a href="/#featured">学期特别篇阅读顺序</a>
+        </div>
+      </section>
+
+      <!-- 11. 补充板块：连载时间线 -->
+      <section id="timeline" aria-labelledby="timeline-title">
+        <div class="section-head">
+          <h2 id="timeline-title">近期连载时间线</h2>
+          <span class="section-note">2026 年 10 月下旬至 11 月上旬</span>
+        </div>
+        <ul class="timeline">
+          <li>
+            <div class="tl-date">2026-11-08</div>
+            <div class="tl-title">第 47 话「运动会篇·下」上线</div>
+            <div class="tl-desc">借物赛跑后半程、接力赛结果与闭幕式广播稿，同步新增林小满角色档案。</div>
+          </li>
+          <li>
+            <div class="tl-date">2026-11-06</div>
+            <div class="tl-title">运动会特别篇彩页发布</div>
+            <div class="tl-desc">啦啦队全员立绘与入场广播稿全文，作者手记同步说明分镜调整。</div>
+          </li>
+          <li>
+            <div class="tl-date">2026-11-04</div>
+            <div class="tl-title">第 46 话「运动会篇·上」上线</div>
+            <div class="tl-desc">报名项目抽签、借物赛跑纸条内容与班级接力赛名单公布。</div>
+          </li>
+          <li>
+            <div class="tl-date">2026-11-03</div>
+            <div class="tl-title">期中篇后篇补完</div>
+            <div class="tl-desc">成绩单对话延续，加入母亲青年时代成绩单彩蛋。</div>
+          </li>
+          <li>
+            <div class="tl-date">2026-10-28</div>
+            <div class="tl-title">社团招新篇上线</div>
+            <div class="tl-desc">广播站与文学社抢人战，评论区发起社团选择投票。</div>
+          </li>
+          <li>
+            <div class="tl-date">2026-10-25</div>
+            <div class="tl-title">家访篇上线</div>
+            <div class="tl-desc">班主任周末家访，家庭关系图谱同步更新。</div>
+          </li>
+          <li>
+            <div class="tl-date">2026-10-20</div>
+            <div class="tl-title">梅雨篇「一把伞和三个顺路的同学」上线</div>
+            <div class="tl-desc">雨天放学路的伞下空间分配，单元短篇系列新增一话。</div>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+    <!-- 右辅助栏 -->
+    <aside class="col-right" aria-label="辅助信息">
+      <div class="side-card">
+        <h2><span class="ico" aria-hidden="true">◆</span>本周热读榜</h2>
+        <ol class="rank-list">
+          <li><span class="rank-num">1</span><a href="/#featured">运动会篇：借物赛跑的意外搭档</a></li>
+          <li><span class="rank-num">2</span><a href="/#featured">期中篇：成绩单上的红笔批注</a></li>
+          <li><span class="rank-num">3</span><a href="/#featured">家访篇：班主任来访的那个周末</a></li>
+          <li><span class="rank-num">4</span><a href="/#featured">社团招新篇：广播站与文学社的抢人战</a></li>
+          <li><span class="rank-num">5</span><a href="/#featured">食堂篇：限量炸鸡排的午休争夺战</a></li>
+          <li><span class="rank-num">6</span><a href="/#featured">梅雨篇：一把伞和三个顺路的同学</a></li>
+        </ol>
+      </div>
+      <div class="side-card">
+        <h2><span class="ico" aria-hidden="true">◆</span>更新速览</h2>
+        <ul class="update-stream">
+          <li><span class="tag">今天</span>第 47 话「运动会篇·下」上线</li>
+          <li><span class="tag">今天</span>林小满角色档案新增 6 条</li>
+          <li><span class="tag">昨天</span>图书馆午休篇番外更新</li>
+          <li><span class="tag">11-06</span>运动会彩页与广播稿公开</li>
+          <li><span class="tag">11-05</span>搞笑短篇分类新增 8 部</li>
+          <li><span class="tag">11-04</span>第 46 话「运动会篇·上」</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<!-- 页尾 -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand-text">金子同学漫画</div>
+      <p>聚合校园日常、成长故事与搞笑短篇的漫画内容页，提供条目推荐、角色档案、分集看点与类型解析。</p>
+    </div>
+    <div class="footer-col">
+      <h3>内容栏目</h3>
+      <a href="/#overview">作品概览</a>
+      <a href="/#featured">精选推荐</a>
+      <a href="/#updates">更新动态</a>
+      <a href="/#categories">分类入口</a>
+    </div>
+    <div class="footer-col">
+      <h3>阅读参考</h3>
+      <a href="/#deep-dive">深度解析</a>
+      <a href="/#guide">阅读指南</a>
+      <a href="/#faq">常见问答</a>
+      <a href="/#timeline">连载时间线</a>
+    </div>
+    <div class="footer-col">
+      <h3>互动与资讯</h3>
+      <a href="/#comments">读者评论</a>
+      <a href="/#news">相关资讯</a>
+      <a href="/#related">延伸方向</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>部分内容为示例数据，仅用于展示页面结构</span>
+    <span>© 2026 金子同学漫画内容页</span>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var input = document.getElementById('site-search');
+    var btn = document.getElementById('search-btn');
+    var noResult = document.createElement('div');
+    noResult.className = 'no-result';
+    noResult.textContent = '没有找到匹配的条目，换个关键词试试。';
+    var mainCol = document.querySelector('.main-col');
+    if (mainCol) mainCol.appendChild(noResult);
+
+    function doSearch() {
+      var q = (input.value || '').trim().toLowerCase();
+      var cards = document.querySelectorAll('.comic-card');
+      var listItems = document.querySelectorAll('.update-list li, .news-list li, .timeline li');
+      var tagLinks = document.querySelectorAll('.tag-cloud a');
+      var catItems = document.querySelectorAll('.cat-item');
+      var commentCards = document.querySelectorAll('.comment-card');
+      var all = [].slice.call(cards).concat([].slice.call(listItems), [].slice.call(tagLinks), [].slice.call(catItems), [].slice.call(commentCards));
+      if (!q) {
+        all.forEach(function(el) { el.style.display = ''; });
+        noResult.classList.remove('show');
+        return;
+      }
+      var visible = 0;
+      all.forEach(function(el) {
+        var text = (el.textContent || '').toLowerCase();
+        if (text.indexOf(q) !== -1) {
+          el.style.display = '';
+          visible++;
+        } else {
+          el.style.display = 'none';
+        }
+      });
+      if (visible === 0) {
+        noResult.classList.add('show');
+      } else {
+        noResult.classList.remove('show');
+      }
+    }
+
+    btn.addEventListener('click', doSearch);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
+    });
+    input.addEventListener('input', function() {
+      if (!input.value.trim()) doSearch();
+    });
+  })();
+</script>
+
+</body>
+      </html>
